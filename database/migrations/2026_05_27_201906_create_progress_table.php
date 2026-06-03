@@ -11,10 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('progress', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
+Schema::create('progress', function (Blueprint $table) {
+    $table->id();
+    $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+    $table->foreignId('lesson_id')->constrained()->cascadeOnDelete();
+    $table->integer('score')->default(0);
+    $table->boolean('completed')->default(false);
+    $table->timestamps();
+});
     }
 
     /**

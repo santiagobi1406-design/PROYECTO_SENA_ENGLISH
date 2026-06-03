@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('answers', function (Blueprint $table) {
+       Schema::create('answers', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('exercise_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('selected_option_id')->nullable()->constrained('options')->nullOnDelete();
+            $table->boolean('is_correct')->default(false);
             $table->timestamps();
         });
     }

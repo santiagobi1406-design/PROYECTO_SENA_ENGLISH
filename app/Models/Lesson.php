@@ -2,11 +2,24 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Lesson extends Model
 {
-    /** @use HasFactory<\Database\Factories\LessonFactory> */
-    use HasFactory;
+    protected $fillable = [
+        'title',
+        'description',
+        'type',
+        'level'
+    ];
+
+    public function exercises()
+    {
+        return $this->hasMany(Exercise::class);
+    }
+
+    public function progress()
+    {
+        return $this->hasMany(Progress::class);
+    }
 }

@@ -2,11 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Option extends Model
 {
-    /** @use HasFactory<\Database\Factories\OptionFactory> */
-    use HasFactory;
+    protected $fillable = [
+        'exercise_id',
+        'option_text',
+        'is_correct'
+    ];
+
+    public function exercise()
+    {
+        return $this->belongsTo(Exercise::class);
+    }
 }

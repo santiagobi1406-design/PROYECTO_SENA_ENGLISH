@@ -2,11 +2,28 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Exercise extends Model
 {
-    /** @use HasFactory<\Database\Factories\ExerciseFactory> */
-    use HasFactory;
+    protected $fillable = [
+        'lesson_id',
+        'question',
+        'type'
+    ];
+
+    public function lesson()
+    {
+        return $this->belongsTo(Lesson::class);
+    }
+
+    public function options()
+    {
+        return $this->hasMany(Option::class);
+    }
+
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
+    }
 }
